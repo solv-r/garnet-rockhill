@@ -1,0 +1,18 @@
+truncate properties cascade; delete from locations where kind='area';
+insert into locations(kind,name,slug,parent_id,public_lat,public_lng) select 'area','Maitama','maitama',id,9.09,7.49 from locations where slug='abuja';
+insert into locations(kind,name,slug,parent_id,public_lat,public_lng) select 'area','Lekki','lekki',id,6.44,3.47 from locations where slug='lagos';
+create temp table k as select (select id from property_categories where slug='house') house,(select id from property_categories where slug='land') land,(select id from locations where slug='maitama') mait,(select id from locations where slug='lekki') lekki;
+insert into properties(slug,title,category_id,transaction,status,publish,price,price_period,location_id,bedrooms,bathrooms,plot_size_sqm,listed_at,description) select 'h1','House A',house,'sale','available','published',50000000,'total',mait,4,3,null,now()-interval '3 day','d' from k;
+insert into properties(slug,title,category_id,transaction,status,publish,price,price_period,location_id,bedrooms,bathrooms,listed_at,description) select 'h2','House B',house,'sale','available','published',150000000,'total',mait,5,5,now()-interval '2 day','d' from k;
+insert into properties(slug,title,category_id,transaction,status,publish,price,price_period,location_id,bedrooms,bathrooms,listed_at,description) select 'r1','Rental C',house,'rent','available','published',3000000,'year',lekki,2,2,now()-interval '1 day','d' from k;
+insert into properties(slug,title,category_id,transaction,status,publish,price,price_period,location_id,plot_size_sqm,listed_at,description) select 'l1','Plot D',land,'sale','available','published',20000000,'total',lekki,600,now(),'d' from k;
+insert into properties(slug,title,category_id,transaction,status,publish,price,location_id,bedrooms,listed_at) select 'u1','Upcoming E',house,'off_plan_enquiry','upcoming','published',null,mait,3,now() from k;
+insert into properties(slug,title,category_id,transaction,status,publish,price,location_id,bedrooms,listed_at) select 's1','Sold F',house,'sale','sold','published',40000000,mait,3,now() from k;
+insert into properties(slug,title,category_id,transaction,status,publish,price,location_id) select 'd1','Draft G',house,'sale','draft','draft',1,mait from k;
+insert into properties(slug,title,category_id,transaction,status,publish,price,location_id,listed_at) select 'bulk'||g,'Bulk '||g,house,'rent','available','published',1000000+g,lekki,now()-((g+10)||' day')::interval from k, generate_series(1,13) g;
+insert into property_images(id,property_id,storage_path,sort_order) select '11111111-1111-1111-1111-111111111111',id,'x/a.webp',0 from properties where slug='h1';
+insert into property_images(property_id,storage_path,sort_order) select id,'x/b.webp',1 from properties where slug='h1';
+update properties set cover_image_id='11111111-1111-1111-1111-111111111111' where slug='h1';
+insert into property_features select p.id,f.id from properties p, features f where p.slug in ('h1','h2') and f.slug='security';
+insert into property_features select p.id,f.id from properties p, features f where p.slug='h1' and f.slug='gym';
+insert into property_private select id,'1 Secret Close',9.0911,7.4911 from properties where slug='h1';

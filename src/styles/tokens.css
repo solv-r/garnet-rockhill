@@ -1,0 +1,21 @@
+/* Homes teal sampled from the logo (~#083848). The Garnet Rockhill logo is mid-grey
+   line art (~#909090), so the corporate palette is graphite plus the shared teal.
+   Accent colours marked "proposed" are NOT in either logo and need client approval. */
+:root{
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-6:1.5rem;--space-8:2rem;--space-12:3rem;--space-16:4rem;
+  --radius:6px;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --focus:0 0 0 3px color-mix(in srgb,var(--brand-accent) 55%,white);
+}
+[data-brand="corporate"]{
+  --brand-primary:#2b3138;--brand-ink:#14181c;--brand-accent:#083848;
+  --surface:#fff;--surface-alt:#f3f4f5;--muted:#5b636b;--line:#d9dcdf;
+  --font-display:Georgia,"Times New Roman",serif;--link:#083848;--focus-ring:#c98f12;
+  --accent-proposed:#8b1e2d;
+}
+[data-brand="homes"]{
+  --brand-primary:#083848;--brand-ink:#04222d;--brand-accent:#083848;
+  --surface:#fff;--surface-alt:#f4f1ea;--muted:#4f6169;--line:#dcd6c8;
+  --font-display:"Playfair Display",Georgia,"Times New Roman",serif;--link:#0b5266;--focus-ring:#c98f12;
+  --accent-proposed:#b08a4a;
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

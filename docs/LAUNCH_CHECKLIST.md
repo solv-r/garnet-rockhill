@@ -1,0 +1,14 @@
+# Launch checklist
+- [ ] Production Supabase project (Pro): migrations 0001, 0002, 0003 and seed.sql applied; public sign-ups disabled; no test data loaded
+- [ ] First super admin created; production keys removed from local `.env.local`
+- [ ] Vercel Pro; all environment variables set; `CORPORATE_URL` / `HOMES_URL` are the final https addresses
+- [ ] Domain: apex, www (redirect) and homes connected; HTTPS valid on all three
+- [ ] Formspree forms created and real IDs set; test enquiry on both sites arrives in email AND appears in Admin > Enquiries
+- [ ] Contact details confirmed in Admin > Settings for both brands
+- [ ] Placeholders replaced (heroes, services, projects, properties); only verified projects and real listings published
+- [ ] Locations have coordinates; map page shows pins
+- [ ] Legal pages reviewed by a Nigerian lawyer; `LEGAL_REVIEWED=true`
+- [ ] Every staff role tested; former test accounts removed
+- [ ] Mobile, keyboard and (if possible) screen-reader check; Lighthouse run
+- [ ] Backups enabled; a restore tested; uptime monitor added
+- [ ] Both sitemaps submitted in Search Console

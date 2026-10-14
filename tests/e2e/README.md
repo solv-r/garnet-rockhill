@@ -1,0 +1,2 @@
+# Optional developer test harness (not needed to run or deploy the site)
+`admin_e2e_1.py` and `admin_e2e_2.py` submit the real admin forms (as a browser without JavaScript would) to a running production build and check the database. They need Python 3 with Pillow, Postgres + PostgREST, and `fake-supabase-proxy.mjs`, which imitates just enough of Supabase Auth and Storage. They were run during development (67 checks). They are provided for reference only; the manual walk-through in `docs/SUPABASE_TEST_SCRIPT.md` is the test to run on a real Supabase project.
